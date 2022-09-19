@@ -7,7 +7,11 @@
 template <unsigned int K>
 class Veb {
 private:
+    /**
+     * Минимум и максимум древа
+     */
     unsigned long long T_min, T_max;
+
     Veb<(K >> 1)> *T[1ULL << (K >> 1)], *aux;
 public:
     Veb();
