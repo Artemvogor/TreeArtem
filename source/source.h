@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdio>
-#include <memory.h>
+#include <memory>
 
 #define NONE(K) (1ULL << K)
 
@@ -12,10 +12,10 @@ private:
      */
     unsigned long long T_min, T_max;
 
-    Veb<(K >> 1)> *T[1ULL << (K >> 1)], *aux;
+    std::array<Veb<(K >> 1)>,1ULL << (K >> 1)> T;
+    std::unique_ptr<Veb> aux;
 public:
     Veb();
-    ~Veb();
     inline bool empty() const;
     inline unsigned long long get_min() const;
     inline unsigned long long get_max() const;
@@ -25,4 +25,11 @@ public:
     void insert(unsigned long long key);
     unsigned long long find_next(unsigned long long key);
     bool lookup(unsigned long long key);
+
+};
+template <>
+class Veb<0>{
+
+
+    std::array<Veb<(K >> 1)>,1ULL << (K >> 1)> T;
 };
